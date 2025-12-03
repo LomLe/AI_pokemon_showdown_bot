@@ -2,12 +2,13 @@ from typing import Optional
 
 
 class Move:
-    
     def __init__(
         self, 
         name: str, 
         type: Optional[str] = None, 
         attack_power: Optional[int] = None, 
+        accuracy: Optional[int] = None,
+        priority: Optional[int] = None,
         secondary_effect: Optional[str] = None, 
         pp: Optional[int] = None, 
         max_pp: Optional[int] = None
@@ -15,6 +16,8 @@ class Move:
         self.name: str = name
         self.type: Optional[str] = type
         self.attack_power: Optional[int] = attack_power
+        self.accuracy: Optional[int] = accuracy
+        self.priority: Optional[int] = priority
         self.secondary_effect: Optional[str] = secondary_effect
         self.pp: Optional[int] = pp
         self.max_pp: Optional[int] = max_pp
