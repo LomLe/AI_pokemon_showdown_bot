@@ -39,18 +39,19 @@ def detect_psd():
         subprocess.run(
             ['osascript', '-e', 'tell application "Google Chrome" to get name'],
             capture_output=True,
+            text=True,
             check=True
         )
     except subprocess.CalledProcessError:
         print("❌ Cannot access Chrome")
         print("   Enable Terminal Automation permissions in System Settings")
-        return
+        return False
     
     # Get all URLs
     all_urls = get_chrome_urls()
     if not all_urls:
         print("❌ No tabs found")
-        return
+        return False
     
     # Split by newline (as set in AppleScript) and filter out empty strings
     urls = [url.strip() for url in all_urls.split("\n") if url.strip()]
@@ -60,12 +61,15 @@ def detect_psd():
     
     # Detect Pokemon Showdown
     found = [url for url in urls if "pokemonshowdown.com" in url.lower()]
-    if found:
+    if len(found) > 0:
         print(f"\n✅ Found {len(found)} Pokemon Showdown URL(s):")
         for url in found:
             print(f"   {url}")
+        return True
     else:
         print("\n❌ No Pokemon Showdown URLs found")
+        return False
+    
 
 
 if __name__ == "__main__":
