@@ -24,7 +24,7 @@ def read_html():
         print(f"✅ Read PSD HTML. Read {len(html)} characters.")
         return html
     except subprocess.CalledProcessError as e:
-        print(f"❌ ERROR Reading PSD HTML. Error: {e.stderr.decode() if e.stderr else e}")
+        print(f"❌ ERROR Reading PSD HTML. Error: {e.stderr if e.stderr else e}")
         return None
 
 
