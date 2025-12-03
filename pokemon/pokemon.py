@@ -18,11 +18,12 @@ class Pokemon:
         level: Optional[int] = None, 
         gender: Optional[str] = None, 
         stats: Optional[Stats] = None, 
+        stat_changes: Optional[StatChanges] = None,
         moves: Optional[List[Move]] = None, 
         status: Optional[Status] = None, 
         ability: Optional[Ability] = None, 
         item: Optional[Item] = None,
-        stat_changes: Optional[StatChanges] = None
+        terastal: Optional[str] = None,
     ) -> None:
         self.name: str = name
         self.index: Optional[str] = index
@@ -31,11 +32,12 @@ class Pokemon:
         self.level: Optional[int] = level
         self.gender: Optional[str] = gender
         self.stats: Optional[Stats] = stats
+        self.stat_changes: Optional[StatChanges] = stat_changes
         self.moves: List[Move] = moves if moves is not None else []
         self.status: Optional[Status] = status
         self.ability: Optional[Ability] = ability
         self.item: Optional[Item] = item
-        self.stat_changes: Optional[StatChanges] = stat_changes
+        self.terastal: Optional[str] = terastal
     
     def __repr__(self) -> str:
         active_str = " (ACTIVE)" if self.active else ""
