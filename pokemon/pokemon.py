@@ -5,10 +5,10 @@ from .ability import Ability
 from .item import Item
 from .move import Move
 from .status import Status
+from .stat_changes import StatChanges
 
 
 class Pokemon:
-    
     def __init__(
         self, 
         name: str, 
@@ -21,7 +21,8 @@ class Pokemon:
         moves: Optional[List[Move]] = None, 
         status: Optional[Status] = None, 
         ability: Optional[Ability] = None, 
-        item: Optional[Item] = None
+        item: Optional[Item] = None,
+        stat_changes: Optional[StatChanges] = None
     ) -> None:
         self.name: str = name
         self.index: Optional[str] = index
@@ -34,6 +35,7 @@ class Pokemon:
         self.status: Optional[Status] = status
         self.ability: Optional[Ability] = ability
         self.item: Optional[Item] = item
+        self.stat_changes: Optional[StatChanges] = stat_changes
     
     def __repr__(self) -> str:
         active_str = " (ACTIVE)" if self.active else ""

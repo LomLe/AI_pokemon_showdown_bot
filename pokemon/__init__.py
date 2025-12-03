@@ -4,6 +4,7 @@ from .ability import Ability
 from .item import Item
 from .move import Move
 from .status import Status
+from .stat_changes import StatChanges
 
-__all__ = ['Pokemon', 'Stats', 'Ability', 'Item', 'Move', 'Status']
+__all__ = ['Pokemon', 'Stats', 'Ability', 'Item', 'Move', 'Status', 'StatChanges']
 
