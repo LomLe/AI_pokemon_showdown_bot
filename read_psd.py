@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import subprocess
+import os
+from datetime import datetime
 
 def read_html():
     """Read HTML from the first Pokemon Showdown tab."""
@@ -28,5 +30,32 @@ def read_html():
         return None
 
 
+def html_to_file(html):
+    """Export HTML content to a text file in the html_export folder."""
+    if html is None:
+        print("❌ Cannot export: HTML is None")
+        return None
+    
+    # Create html_export directory if it doesn't exist
+    export_dir = "html_export"
+    os.makedirs(export_dir, exist_ok=True)
+    
+    # Generate filename with timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"psd_html_{timestamp}.txt"
+    filepath = os.path.join(export_dir, filename)
+    
+    try:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(html)
+        print(f"✅ Exported HTML to {filepath}")
+        return filepath
+    except Exception as e:
+        print(f"❌ ERROR exporting HTML to file. Error: {e}")
+        return None
+
+
 if __name__ == "__main__":
-    read_html()
+    html = read_html()
+    if html:
+        html_to_file(html)
