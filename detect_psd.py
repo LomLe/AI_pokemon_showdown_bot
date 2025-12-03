@@ -14,7 +14,9 @@ def get_chrome_urls():
                 set end of urlList to URL of t
             end repeat
         end repeat
-        return urlList
+        -- Join with newline delimiter for reliable parsing
+        set AppleScript's text item delimiters to linefeed
+        return urlList as string
     end tell
     '''
     try:
@@ -50,7 +52,8 @@ def detect_psd():
         print("❌ No tabs found")
         return
     
-    urls = all_urls.split(", ")
+    # Split by newline (as set in AppleScript) and filter out empty strings
+    urls = [url.strip() for url in all_urls.split("\n") if url.strip()]
     print(f"Found {len(urls)} tab(s):")
     for i, url in enumerate(urls, 1):
         print(f"  {i}. {url}")
